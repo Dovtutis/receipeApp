@@ -1,6 +1,5 @@
 const mealsEl = document.getElementById('meals');
 const favoriteContainer = document.getElementById('fav-meals');
-const searchTerminal =  document.getElementById('search-terminal');
 const searchBtn = document.getElementById('search');
 const mealPopup = document.getElementById('meal-popup');
 const popupCloseBtn = document.getElementById('close-popup');
@@ -37,6 +36,8 @@ async function getMealById(id) {
 }
 
 async function getMealsBySearch(term) {
+
+
 
     const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${term}`);
     const responseData = await response.json();
@@ -180,15 +181,20 @@ function showMealInfo (mealData) {
 }
 
 searchBtn.addEventListener("click", async()=>{
-    mealsEl.innerHTML = '';
-    const search = searchTerminal.value;
-    const meals = await getMealsBySearch(search);
+    const searchTerminal =  document.getElementById('search-terminal');
 
-    if (meals){
-        meals.map(meal =>{
-            addMeal(meal);
-        });
-    }
+    if (searchTerminal.value.length > 0){
+        mealsEl.innerHTML = '';
+        const search = searchTerminal.value;
+        const meals = await getMealsBySearch(search);
+
+        if (meals){
+            meals.map(meal =>{
+                addMeal(meal);
+            });
+        }
+    } else {}
+
 });
 
 popupCloseBtn.addEventListener("click", ()=>{
