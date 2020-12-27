@@ -5,14 +5,13 @@ const mealPopup = document.getElementById('meal-popup');
 const popupCloseBtn = document.getElementById('close-popup');
 const mealInfoEl = document.getElementById('meal-info');
 
-
 getRandomMeal();
 fetchFavoriteMeals()
 
 async function getRandomMeal() {
     // let randomMeal;
     //
-    // await fetch('https://www.themealdb.com/api/json/v1/1/random.php') //await makes function to stop until promise is got
+    // fetch('https://www.themealdb.com/api/json/v1/1/random.php')
     //     .then(response => response.json())
     //     .then(data =>{
     //         randomMeal = data;
@@ -20,7 +19,7 @@ async function getRandomMeal() {
 
     //OR
 
-    const response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
+    const response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php'); //await makes function to stop until promise is got
     const responseData = await response.json();
     const randomMeal = responseData.meals[0];
 
