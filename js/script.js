@@ -35,9 +35,6 @@ async function getMealById(id) {
 }
 
 async function getMealsBySearch(term) {
-
-
-
     const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${term}`);
     const responseData = await response.json();
     const meals = responseData.meals;
@@ -70,11 +67,9 @@ function addMeal(mealData, random = false) {
         if (btn.classList.contains('active')){
             removeMealFromLocalStorage(mealData.idMeal);
             btn.classList.remove('active');
-            console.log(mealData);
         } else {
             addMealToLocalStorage(mealData.idMeal);
             btn.classList.add('active'); //Prideda arba nuema btn klase 'active'
-            console.log(mealData);
         }
         fetchFavoriteMeals();
     });
@@ -104,7 +99,6 @@ function getMealsFromLocalStorage() {
 async function fetchFavoriteMeals() {
     favoriteContainer.innerHTML = '';
     const mealIds = getMealsFromLocalStorage();
-    const meals = [];
 
     for (let i = 0; i < mealIds.length; i++) {
         const mealId = mealIds[i];
@@ -156,7 +150,7 @@ function showMealInfo (mealData) {
             break;
         }
     }
-    console.log(ingredients)
+
     mealEl.innerHTML =
         `
                 <h1>${mealData.strMeal}</h1>
